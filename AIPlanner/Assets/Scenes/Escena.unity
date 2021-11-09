@@ -205,6 +205,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4770208387494730, guid: ba2b67dbc790eb74f8a401c592dd619f, type: 3}
   m_PrefabInstance: {fileID: 312488579}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &312488581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1879388732584624, guid: ba2b67dbc790eb74f8a401c592dd619f, type: 3}
+  m_PrefabInstance: {fileID: 312488579}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &312488582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312488581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52a27e7e82aaf840bc19d82abd63620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &312488583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312488581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca305a07e837a645a0fc69a59f3ea0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EnableTraitInspectors: 1
+--- !u!114 &312488584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312488581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fffd197a23152f48958a84d47c07f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_p338023941: {fileID: 312488580}
+  m_p2084774077: {x: -1.9464799, y: 0, z: 3.588629}
+  m_p2006904664: {x: 0, y: 0, z: 1}
+--- !u!114 &312488585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312488581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1508cd04d26f8a54d81091be76a500c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &382256887
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1086353713108280, guid: 10dcade9ef34ab642846c4b889ac76e7, type: 3}
       propertyPath: m_TagString
-      value: Hide
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1086353713108280, guid: 10dcade9ef34ab642846c4b889ac76e7, type: 3}
       propertyPath: m_NavMeshLayer
@@ -767,7 +824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1923948107188124, guid: f16d978b3d1fa984d82c01d30a1fb40a, type: 3}
       propertyPath: m_TagString
-      value: Hide
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1923948107188124, guid: f16d978b3d1fa984d82c01d30a1fb40a, type: 3}
       propertyPath: m_NavMeshLayer
@@ -1218,6 +1275,17 @@ MonoBehaviour:
       m_TraitPropertyId: -1
       m_Enum: {fileID: 0}
       m_Value: 
+  - m_ActionName: Hide
+    m_PlanExecutorStateUpdateMode: 0
+    m_Method: Hide
+    m_SourceGameObject: {fileID: 1867897468}
+    m_Source: {fileID: 1867897472}
+    m_Arguments:
+    - m_Parameter: Tree
+      m_Trait: {fileID: 0}
+      m_TraitPropertyId: -1
+      m_Enum: {fileID: 0}
+      m_Value: 
   m_AutoUpdate: 1
 --- !u!114 &1867897474
 MonoBehaviour:
@@ -1234,6 +1302,7 @@ MonoBehaviour:
   m_p0: 0
   m_p1: 0
   m_p2: 0
+  m_p3: 0
 --- !u!114 &1867897475
 MonoBehaviour:
   m_ObjectHideFlags: 0

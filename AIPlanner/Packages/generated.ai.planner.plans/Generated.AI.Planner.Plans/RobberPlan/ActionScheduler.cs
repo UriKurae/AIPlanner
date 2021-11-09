@@ -16,6 +16,7 @@ namespace Generated.AI.Planner.Plans.RobberPlan
         public static readonly Guid WanderGuid = Guid.NewGuid();
         public static readonly Guid ApproachGuid = Guid.NewGuid();
         public static readonly Guid StealGuid = Guid.NewGuid();
+        public static readonly Guid HideGuid = Guid.NewGuid();
 
         // Input
         public NativeList<StateEntityKey> UnexpandedStates { get; set; }
@@ -39,6 +40,7 @@ namespace Generated.AI.Planner.Plans.RobberPlan
             public EntityCommandBuffer WanderECB;
             public EntityCommandBuffer ApproachECB;
             public EntityCommandBuffer StealECB;
+            public EntityCommandBuffer HideECB;
 
             public void Execute()
             {
@@ -74,6 +76,16 @@ namespace Generated.AI.Planner.Plans.RobberPlan
                         CreatedStateInfo.Enqueue(StealRefs[j].TransitionInfo);
                     entityManager.RemoveComponent(stateEntity, typeof(StealFixupReference));
                 }
+
+                HideECB.Playback(entityManager);
+                for (int i = 0; i < UnexpandedStates.Length; i++)
+                {
+                    var stateEntity = UnexpandedStates[i].Entity;
+                    var HideRefs = entityManager.GetBuffer<HideFixupReference>(stateEntity);
+                    for (int j = 0; j < HideRefs.Length; j++)
+                        CreatedStateInfo.Enqueue(HideRefs[j].TransitionInfo);
+                    entityManager.RemoveComponent(stateEntity, typeof(HideFixupReference));
+                }
             }
         }
 
@@ -89,13 +101,17 @@ namespace Generated.AI.Planner.Plans.RobberPlan
             var StealDataContext = StateManager.StateDataContext;
             var StealECB = StateManager.GetEntityCommandBuffer();
             StealDataContext.EntityCommandBuffer = StealECB.AsParallelWriter();
+            var HideDataContext = StateManager.StateDataContext;
+            var HideECB = StateManager.GetEntityCommandBuffer();
+            HideDataContext.EntityCommandBuffer = HideECB.AsParallelWriter();
 
-            var allActionJobs = new NativeArray<JobHandle>(4, Allocator.TempJob)
+            var allActionJobs = new NativeArray<JobHandle>(5, Allocator.TempJob)
             {
                 [0] = new Wander(WanderGuid, UnexpandedStates, WanderDataContext).Schedule(UnexpandedStates, 0, inputDeps),
                 [1] = new Approach(ApproachGuid, UnexpandedStates, ApproachDataContext).Schedule(UnexpandedStates, 0, inputDeps),
                 [2] = new Steal(StealGuid, UnexpandedStates, StealDataContext).Schedule(UnexpandedStates, 0, inputDeps),
-                [3] = entityManager.ExclusiveEntityTransactionDependency
+                [3] = new Hide(HideGuid, UnexpandedStates, HideDataContext).Schedule(UnexpandedStates, 0, inputDeps),
+                [4] = entityManager.ExclusiveEntityTransactionDependency
             };
 
             var allActionJobsHandle = JobHandle.CombineDependencies(allActionJobs);
@@ -110,6 +126,7 @@ namespace Generated.AI.Planner.Plans.RobberPlan
                 WanderECB = WanderECB,
                 ApproachECB = ApproachECB,
                 StealECB = StealECB,
+                HideECB = HideECB,
             };
 
             var playbackJobHandle = playbackJob.Schedule(allActionJobsHandle);

@@ -17,7 +17,8 @@ MonoBehaviour:
   - id: 0
   - id: 1
   - id: 2
-  m_NextElementId: 3
+  - id: 3
+  m_NextElementId: 4
   references:
     version: 1
     00000000:
@@ -37,4 +38,10 @@ MonoBehaviour:
       data:
         m_Name: Stolen
         m_Id: 2
+        m_Value: 0
+    00000003:
+      type: {class: BooleanProperty, ns: Unity.Semantic.Traits, asm: Unity.Semantic.Traits}
+      data:
+        m_Name: Hide
+        m_Id: 3
         m_Value: 0

@@ -26,7 +26,7 @@ MonoBehaviour:
     m_OperandA:
       m_Parameter: Robber
       m_Trait: {fileID: 11400000, guid: d59369a7ba1a6f34fab2d3083a9b5749, type: 2}
-      m_TraitPropertyId: 2
+      m_TraitPropertyId: 3
       m_Enum: {fileID: 0}
       m_Value: 
     m_OperandB:

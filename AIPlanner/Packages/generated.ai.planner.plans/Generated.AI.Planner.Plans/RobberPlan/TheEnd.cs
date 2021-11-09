@@ -21,7 +21,7 @@ namespace Generated.AI.Planner.Plans.RobberPlan
                 var RobberObject = stateData.TraitBasedObjects[RobberIndex];
             
                 
-                if (!(RobberBuffer[RobberObject.RobberIndex].Stolen == true))
+                if (!(RobberBuffer[RobberObject.RobberIndex].Hide == true))
                     continue;
                 RobberObjectIndices.Dispose();
                 RobberFilter.Dispose();

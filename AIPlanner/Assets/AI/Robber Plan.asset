@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2f905c8985965ca438103ca779f028cc, type: 2}
   - {fileID: 11400000, guid: 602dc9141908c854f84d4d3db468566a, type: 2}
   - {fileID: 11400000, guid: 6c421982089e04e4fa38a63ca6e97677, type: 2}
+  - {fileID: 11400000, guid: a99422f39c0959c449ff2a5b3767c94f, type: 2}
   m_StateTerminationDefinitions:
   - {fileID: 11400000, guid: 4b201f1b84d7e544aa4f408413ea54cd, type: 2}
   m_CustomCumulativeRewardEstimator: 

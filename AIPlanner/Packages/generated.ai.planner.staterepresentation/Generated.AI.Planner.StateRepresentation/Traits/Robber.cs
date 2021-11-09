@@ -12,9 +12,11 @@ namespace Generated.AI.Planner.StateRepresentation
         public const string FieldReady2Steal = "Ready2Steal";
         public const string FieldCopAway = "CopAway";
         public const string FieldStolen = "Stolen";
+        public const string FieldHide = "Hide";
         public System.Boolean Ready2Steal;
         public System.Boolean CopAway;
         public System.Boolean Stolen;
+        public System.Boolean Hide;
 
         public void SetField(string fieldName, object value)
         {
@@ -28,6 +30,9 @@ namespace Generated.AI.Planner.StateRepresentation
                     break;
                 case nameof(Stolen):
                     Stolen = (System.Boolean)value;
+                    break;
+                case nameof(Hide):
+                    Hide = (System.Boolean)value;
                     break;
                 default:
                     throw new ArgumentException($"Field \"{fieldName}\" does not exist on trait Robber.");
@@ -44,6 +49,8 @@ namespace Generated.AI.Planner.StateRepresentation
                     return CopAway;
                 case nameof(Stolen):
                     return Stolen;
+                case nameof(Hide):
+                    return Hide;
                 default:
                     throw new ArgumentException($"Field \"{fieldName}\" does not exist on trait Robber.");
             }
@@ -51,12 +58,12 @@ namespace Generated.AI.Planner.StateRepresentation
 
         public bool Equals(Robber other)
         {
-            return Ready2Steal == other.Ready2Steal && CopAway == other.CopAway && Stolen == other.Stolen;
+            return Ready2Steal == other.Ready2Steal && CopAway == other.CopAway && Stolen == other.Stolen && Hide == other.Hide;
         }
 
         public override string ToString()
         {
-            return $"Robber\n  Ready2Steal: {Ready2Steal}\n  CopAway: {CopAway}\n  Stolen: {Stolen}";
+            return $"Robber\n  Ready2Steal: {Ready2Steal}\n  CopAway: {CopAway}\n  Stolen: {Stolen}\n  Hide: {Hide}";
         }
     }
 }

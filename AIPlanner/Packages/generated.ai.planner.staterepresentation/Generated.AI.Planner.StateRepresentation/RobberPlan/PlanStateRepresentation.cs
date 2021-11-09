@@ -45,15 +45,17 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 Index = 2;
             else if (typeIndex == TypeManager.GetTypeIndex<Treasure>())
                 Index = 3;
-            else if (typeIndex == TypeManager.GetTypeIndex<PlanningAgent>())
+            else if (typeIndex == TypeManager.GetTypeIndex<TreeHide>())
                 Index = 4;
+            else if (typeIndex == TypeManager.GetTypeIndex<PlanningAgent>())
+                Index = 5;
         }
     }
 
     [StructLayout(LayoutKind.Sequential, Size=8)]
     public struct TraitBasedObject : ITraitBasedObject, IEquatable<TraitBasedObject>
     {
-        public int Length => 5;
+        public int Length => 6;
 
         public byte this[int i]
         {
@@ -70,6 +72,8 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                     case 3:
                         return TreasureIndex;
                     case 4:
+                        return TreeHideIndex;
+                    case 5:
                         return PlanningAgentIndex;
                 }
 
@@ -92,6 +96,9 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                         TreasureIndex = value;
                         break;
                     case 4:
+                        TreeHideIndex = value;
+                        break;
+                    case 5:
                         PlanningAgentIndex = value;
                         break;
                 }
@@ -106,6 +113,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
             CopIndex = Unset,
             RobberIndex = Unset,
             TreasureIndex = Unset,
+            TreeHideIndex = Unset,
             PlanningAgentIndex = Unset,
         };
 
@@ -114,6 +122,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
         public byte CopIndex;
         public byte RobberIndex;
         public byte TreasureIndex;
+        public byte TreeHideIndex;
         public byte PlanningAgentIndex;
 
 
@@ -121,6 +130,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
         static readonly int s_CopTypeIndex = TypeManager.GetTypeIndex<Cop>();
         static readonly int s_RobberTypeIndex = TypeManager.GetTypeIndex<Robber>();
         static readonly int s_TreasureTypeIndex = TypeManager.GetTypeIndex<Treasure>();
+        static readonly int s_TreeHideTypeIndex = TypeManager.GetTypeIndex<TreeHide>();
         static readonly int s_PlanningAgentTypeIndex = TypeManager.GetTypeIndex<PlanningAgent>();
 
         public bool HasSameTraits(TraitBasedObject other)
@@ -176,6 +186,11 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                     if (t.AccessModeType == ComponentType.AccessMode.Exclude ^ TreasureIndex == Unset)
                         return false;
                 }
+                else if (t.TypeIndex == s_TreeHideTypeIndex)
+                {
+                    if (t.AccessModeType == ComponentType.AccessMode.Exclude ^ TreeHideIndex == Unset)
+                        return false;
+                }
                 else if (t.TypeIndex == s_PlanningAgentTypeIndex)
                 {
                     if (t.AccessModeType == ComponentType.AccessMode.Exclude ^ PlanningAgentIndex == Unset)
@@ -217,6 +232,11 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                     if (t.AccessModeType == ComponentType.AccessMode.Exclude ^ TreasureIndex == Unset)
                         return false;
                 }
+                else if (t.TypeIndex == s_TreeHideTypeIndex)
+                {
+                    if (t.AccessModeType == ComponentType.AccessMode.Exclude ^ TreeHideIndex == Unset)
+                        return false;
+                }
                 else if (t.TypeIndex == s_PlanningAgentTypeIndex)
                 {
                     if (t.AccessModeType == ComponentType.AccessMode.Exclude ^ PlanningAgentIndex == Unset)
@@ -232,7 +252,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
         public bool Equals(TraitBasedObject other)
         {
 
-                return LocationIndex == other.LocationIndex && CopIndex == other.CopIndex && RobberIndex == other.RobberIndex && TreasureIndex == other.TreasureIndex && PlanningAgentIndex == other.PlanningAgentIndex;
+                return LocationIndex == other.LocationIndex && CopIndex == other.CopIndex && RobberIndex == other.RobberIndex && TreasureIndex == other.TreasureIndex && TreeHideIndex == other.TreeHideIndex && PlanningAgentIndex == other.PlanningAgentIndex;
         }
 
         public override bool Equals(object obj)
@@ -250,6 +270,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                      hashCode = (hashCode * 397) ^ CopIndex.GetHashCode();
                      hashCode = (hashCode * 397) ^ RobberIndex.GetHashCode();
                      hashCode = (hashCode * 397) ^ TreasureIndex.GetHashCode();
+                     hashCode = (hashCode * 397) ^ TreeHideIndex.GetHashCode();
                      hashCode = (hashCode * 397) ^ PlanningAgentIndex.GetHashCode();
                 return hashCode;
             }
@@ -266,12 +287,14 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
         public DynamicBuffer<Cop> CopBuffer;
         public DynamicBuffer<Robber> RobberBuffer;
         public DynamicBuffer<Treasure> TreasureBuffer;
+        public DynamicBuffer<TreeHide> TreeHideBuffer;
         public DynamicBuffer<PlanningAgent> PlanningAgentBuffer;
 
         static readonly int s_LocationTypeIndex = TypeManager.GetTypeIndex<Location>();
         static readonly int s_CopTypeIndex = TypeManager.GetTypeIndex<Cop>();
         static readonly int s_RobberTypeIndex = TypeManager.GetTypeIndex<Robber>();
         static readonly int s_TreasureTypeIndex = TypeManager.GetTypeIndex<Treasure>();
+        static readonly int s_TreeHideTypeIndex = TypeManager.GetTypeIndex<TreeHide>();
         static readonly int s_PlanningAgentTypeIndex = TypeManager.GetTypeIndex<PlanningAgent>();
 
         public StateData(ExclusiveEntityTransaction transaction, Entity stateEntity)
@@ -284,6 +307,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
             CopBuffer = transaction.GetBuffer<Cop>(stateEntity);
             RobberBuffer = transaction.GetBuffer<Robber>(stateEntity);
             TreasureBuffer = transaction.GetBuffer<Treasure>(stateEntity);
+            TreeHideBuffer = transaction.GetBuffer<TreeHide>(stateEntity);
             PlanningAgentBuffer = transaction.GetBuffer<PlanningAgent>(stateEntity);
         }
 
@@ -297,6 +321,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
             CopBuffer = entityCommandBuffer.AddBuffer<Cop>(jobIndex, stateEntity);
             RobberBuffer = entityCommandBuffer.AddBuffer<Robber>(jobIndex, stateEntity);
             TreasureBuffer = entityCommandBuffer.AddBuffer<Treasure>(jobIndex, stateEntity);
+            TreeHideBuffer = entityCommandBuffer.AddBuffer<TreeHide>(jobIndex, stateEntity);
             PlanningAgentBuffer = entityCommandBuffer.AddBuffer<PlanningAgent>(jobIndex, stateEntity);
         }
 
@@ -316,6 +341,8 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
             Robbers.CopyFrom(RobberBuffer.AsNativeArray());
             var Treasures = entityCommandBuffer.SetBuffer<Treasure>(jobIndex, stateEntity);
             Treasures.CopyFrom(TreasureBuffer.AsNativeArray());
+            var TreeHides = entityCommandBuffer.SetBuffer<TreeHide>(jobIndex, stateEntity);
+            TreeHides.CopyFrom(TreeHideBuffer.AsNativeArray());
             var PlanningAgents = entityCommandBuffer.SetBuffer<PlanningAgent>(jobIndex, stateEntity);
             PlanningAgents.CopyFrom(PlanningAgentBuffer.AsNativeArray());
 
@@ -329,6 +356,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 CopBuffer = Cops,
                 RobberBuffer = Robbers,
                 TreasureBuffer = Treasures,
+                TreeHideBuffer = TreeHides,
                 PlanningAgentBuffer = PlanningAgents,
             };
         }
@@ -362,6 +390,11 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 {
                     TreasureBuffer.Add(default);
                     traitBasedObject.TreasureIndex = (byte) (TreasureBuffer.Length - 1);
+                }
+                else if (t.TypeIndex == s_TreeHideTypeIndex)
+                {
+                    TreeHideBuffer.Add(default);
+                    traitBasedObject.TreeHideIndex = (byte) (TreeHideBuffer.Length - 1);
                 }
                 else if (t.TypeIndex == s_PlanningAgentTypeIndex)
                 {
@@ -416,6 +449,8 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 SetTraitOnObject(RobberTrait, ref traitBasedObject);
             else if (trait is Treasure TreasureTrait)
                 SetTraitOnObject(TreasureTrait, ref traitBasedObject);
+            else if (trait is TreeHide TreeHideTrait)
+                SetTraitOnObject(TreeHideTrait, ref traitBasedObject);
             else if (trait is PlanningAgent PlanningAgentTrait)
                 SetTraitOnObject(PlanningAgentTrait, ref traitBasedObject);
             else 
@@ -432,6 +467,8 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 SetTraitOnObjectAtIndex(RobberTrait, traitBasedObjectIndex);
             else if (trait is Treasure TreasureTrait)
                 SetTraitOnObjectAtIndex(TreasureTrait, traitBasedObjectIndex);
+            else if (trait is TreeHide TreeHideTrait)
+                SetTraitOnObjectAtIndex(TreeHideTrait, traitBasedObjectIndex);
             else if (trait is PlanningAgent PlanningAgentTrait)
                 SetTraitOnObjectAtIndex(PlanningAgentTrait, traitBasedObjectIndex);
             else 
@@ -541,6 +578,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
             RemoveTraitOnObject<Cop>(ref traitBasedObject);
             RemoveTraitOnObject<Robber>(ref traitBasedObject);
             RemoveTraitOnObject<Treasure>(ref traitBasedObject);
+            RemoveTraitOnObject<TreeHide>(ref traitBasedObject);
             RemoveTraitOnObject<PlanningAgent>(ref traitBasedObject);
 
             TraitBasedObjects.RemoveAt(objectIndex);
@@ -630,6 +668,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
             RemoveTraitOnObjectAtIndex<Cop>(traitBasedObjectIndex);
             RemoveTraitOnObjectAtIndex<Robber>(traitBasedObjectIndex);
             RemoveTraitOnObjectAtIndex<Treasure>(traitBasedObjectIndex);
+            RemoveTraitOnObjectAtIndex<TreeHide>(traitBasedObjectIndex);
             RemoveTraitOnObjectAtIndex<PlanningAgent>(traitBasedObjectIndex);
 
             TraitBasedObjects.RemoveAt(traitBasedObjectIndex);
@@ -730,6 +769,8 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 case 3:
                     return TreasureBuffer.Reinterpret<T>();
                 case 4:
+                    return TreeHideBuffer.Reinterpret<T>();
+                case 5:
                     return PlanningAgentBuffer.Reinterpret<T>();
             }
 
@@ -749,6 +790,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 || CopBuffer.Length != rhsState.CopBuffer.Length
                 || RobberBuffer.Length != rhsState.RobberBuffer.Length
                 || TreasureBuffer.Length != rhsState.TreasureBuffer.Length
+                || TreeHideBuffer.Length != rhsState.TreeHideBuffer.Length
                 || PlanningAgentBuffer.Length != rhsState.PlanningAgentBuffer.Length)
                 return false;
 
@@ -767,6 +809,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 || CopBuffer.Length != rhsState.CopBuffer.Length
                 || RobberBuffer.Length != rhsState.RobberBuffer.Length
                 || TreasureBuffer.Length != rhsState.TreasureBuffer.Length
+                || TreeHideBuffer.Length != rhsState.TreeHideBuffer.Length
                 || PlanningAgentBuffer.Length != rhsState.PlanningAgentBuffer.Length)
                 return false;
 
@@ -847,6 +890,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
 
 
 
+
             return true;
         }
         
@@ -862,7 +906,8 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
             return
                     one.Ready2Steal == two.Ready2Steal && 
                     one.CopAway == two.CopAway && 
-                    one.Stolen == two.Stolen;
+                    one.Stolen == two.Stolen && 
+                    one.Hide == two.Hide;
         }
         
         bool CheckRelationsAndQueueObjects(TraitBasedObject traitBasedObjectLHS, TraitBasedObject traitBasedObjectRHS, StateData rhsState, ObjectCorrespondence objectMap)
@@ -900,10 +945,17 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 var value = 397
                     ^ element.Ready2Steal.GetHashCode()
                     ^ element.CopAway.GetHashCode()
-                    ^ element.Stolen.GetHashCode();
+                    ^ element.Stolen.GetHashCode()
+                    ^ element.Hide.GetHashCode();
                 stateHashValue = 3860031 + (stateHashValue + value) * 2779 + (stateHashValue * value * 2);
             }
             bufferLength = TreasureBuffer.Length;
+            for (int i = 0; i < bufferLength; i++)
+            {
+                var value = 397;
+                stateHashValue = 3860031 + (stateHashValue + value) * 2779 + (stateHashValue * value * 2);
+            }
+            bufferLength = TreeHideBuffer.Length;
             for (int i = 0; i < bufferLength; i++)
             {
                 var value = 397;
@@ -951,6 +1003,10 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
 
                 traitIndex = traitBasedObject[i++];
                 if (traitIndex != TraitBasedObject.Unset)
+                    sb.AppendLine(TreeHideBuffer[traitIndex].ToString());
+
+                traitIndex = traitBasedObject[i++];
+                if (traitIndex != TraitBasedObject.Unset)
                     sb.AppendLine(PlanningAgentBuffer[traitIndex].ToString());
 
                 sb.AppendLine();
@@ -974,6 +1030,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
         [ReadOnly,NativeDisableContainerSafetyRestriction] public BufferFromEntity<Cop> CopData;
         [ReadOnly,NativeDisableContainerSafetyRestriction] public BufferFromEntity<Robber> RobberData;
         [ReadOnly,NativeDisableContainerSafetyRestriction] public BufferFromEntity<Treasure> TreasureData;
+        [ReadOnly,NativeDisableContainerSafetyRestriction] public BufferFromEntity<TreeHide> TreeHideData;
         [ReadOnly,NativeDisableContainerSafetyRestriction] public BufferFromEntity<PlanningAgent> PlanningAgentData;
 
         [NativeDisableContainerSafetyRestriction,ReadOnly] ObjectCorrespondence m_ObjectCorrespondence;
@@ -988,6 +1045,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
             CopData = system.GetBufferFromEntity<Cop>(true);
             RobberData = system.GetBufferFromEntity<Robber>(true);
             TreasureData = system.GetBufferFromEntity<Treasure>(true);
+            TreeHideData = system.GetBufferFromEntity<TreeHide>(true);
             PlanningAgentData = system.GetBufferFromEntity<PlanningAgent>(true);
 
             m_StateArchetype = stateArchetype;
@@ -1010,6 +1068,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 CopBuffer = CopData[stateEntity],
                 RobberBuffer = RobberData[stateEntity],
                 TreasureBuffer = TreasureData[stateEntity],
+                TreeHideBuffer = TreeHideData[stateEntity],
                 PlanningAgentBuffer = PlanningAgentData[stateEntity],
             };
         }
@@ -1104,6 +1163,7 @@ namespace Generated.AI.Planner.StateRepresentation.RobberPlan
                 typeof(Cop),
                 typeof(Robber),
                 typeof(Treasure),
+                typeof(TreeHide),
                 typeof(PlanningAgent));
 
             m_EntityCommandBuffers = new List<EntityCommandBuffer>();

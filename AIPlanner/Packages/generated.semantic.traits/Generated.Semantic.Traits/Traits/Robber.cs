@@ -79,6 +79,28 @@ namespace Generated.Semantic.Traits
                     m_EntityManager.SetComponentData(m_Entity, data);
             }
         }
+        public System.Boolean Hide
+        {
+            get
+            {
+                if (m_EntityManager != default && m_EntityManager.HasComponent<RobberData>(m_Entity))
+                {
+                    m_p3 = m_EntityManager.GetComponentData<RobberData>(m_Entity).Hide;
+                }
+
+                return m_p3;
+            }
+            set
+            {
+                RobberData data = default;
+                var dataActive = m_EntityManager != default && m_EntityManager.HasComponent<RobberData>(m_Entity);
+                if (dataActive)
+                    data = m_EntityManager.GetComponentData<RobberData>(m_Entity);
+                data.Hide = m_p3 = value;
+                if (dataActive)
+                    m_EntityManager.SetComponentData(m_Entity, data);
+            }
+        }
         public RobberData Data
         {
             get => m_EntityManager != default && m_EntityManager.HasComponent<RobberData>(m_Entity) ?
@@ -100,6 +122,9 @@ namespace Generated.Semantic.Traits
         [SerializeField]
         [InspectorName("Stolen")]
         System.Boolean m_p2 = false;
+        [SerializeField]
+        [InspectorName("Hide")]
+        System.Boolean m_p3 = false;
         #pragma warning restore 649
 
         EntityManager m_EntityManager;
@@ -112,6 +137,7 @@ namespace Generated.Semantic.Traits
             data.Ready2Steal = m_p0;
             data.CopAway = m_p1;
             data.Stolen = m_p2;
+            data.Hide = m_p3;
 
             return data;
         }

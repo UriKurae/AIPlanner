@@ -12,15 +12,16 @@ namespace Generated.Semantic.Traits
         public System.Boolean Ready2Steal;
         public System.Boolean CopAway;
         public System.Boolean Stolen;
+        public System.Boolean Hide;
 
         public bool Equals(RobberData other)
         {
-            return Ready2Steal.Equals(other.Ready2Steal) && CopAway.Equals(other.CopAway) && Stolen.Equals(other.Stolen);
+            return Ready2Steal.Equals(other.Ready2Steal) && CopAway.Equals(other.CopAway) && Stolen.Equals(other.Stolen) && Hide.Equals(other.Hide);
         }
 
         public override string ToString()
         {
-            return $"Robber: {Ready2Steal} {CopAway} {Stolen}";
+            return $"Robber: {Ready2Steal} {CopAway} {Stolen} {Hide}";
         }
     }
 }

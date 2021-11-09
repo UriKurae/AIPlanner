@@ -41,6 +41,7 @@ namespace Generated.AI.Planner.Plans.RobberPlan
             { ActionScheduler.WanderGuid, nameof(Wander) },
             { ActionScheduler.ApproachGuid, nameof(Approach) },
             { ActionScheduler.StealGuid, nameof(Steal) },
+            { ActionScheduler.HideGuid, nameof(Hide) },
         };
 
         PlannerStateConverter<TraitBasedObject, StateEntityKey, StateData, StateDataContext, StateManager> m_StateConverter;
@@ -73,6 +74,9 @@ namespace Generated.AI.Planner.Plans.RobberPlan
                 case var actionGuid when actionGuid == ActionScheduler.StealGuid:
                     actionName = nameof(Steal);
                     break;
+                case var actionGuid when actionGuid == ActionScheduler.HideGuid:
+                    actionName = nameof(Hide);
+                    break;
             }
 
             var executeInfos = GetExecutionInfo(actionName);
@@ -103,6 +107,9 @@ namespace Generated.AI.Planner.Plans.RobberPlan
                     case nameof(Steal):
                         parameterIndex = Steal.GetIndexForParameterName(traitBasedObjectName);
                         break;
+                    case nameof(Hide):
+                        parameterIndex = Hide.GetIndexForParameterName(traitBasedObjectName);
+                        break;
                 }
 
                 if (parameterIndex == -1)
@@ -128,6 +135,10 @@ namespace Generated.AI.Planner.Plans.RobberPlan
                         case nameof(Treasure):
                             var traitTreasure = stateData.GetTraitOnObjectAtIndex<Treasure>(traitBasedObjectIndex);
                             arguments[i] = split.Length == 3 ? traitTreasure.GetField(split[2]) : traitTreasure;
+                            break;
+                        case nameof(TreeHide):
+                            var traitTreeHide = stateData.GetTraitOnObjectAtIndex<TreeHide>(traitBasedObjectIndex);
+                            arguments[i] = split.Length == 3 ? traitTreeHide.GetField(split[2]) : traitTreeHide;
                             break;
                     }
                 }
@@ -183,6 +194,9 @@ namespace Generated.AI.Planner.Plans.RobberPlan
                         break;
                  case var actionGuid when actionGuid == ActionScheduler.StealGuid:
                     parameterNames = Steal.parameterNames;
+                        break;
+                 case var actionGuid when actionGuid == ActionScheduler.HideGuid:
+                    parameterNames = Hide.parameterNames;
                         break;
             }
 

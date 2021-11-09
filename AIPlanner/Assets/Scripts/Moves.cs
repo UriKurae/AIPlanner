@@ -114,6 +114,5 @@ public class Moves : MonoBehaviour
 
 
         Seek(info.point + chosenDir.normalized);
-
     }
 }

@@ -10,9 +10,10 @@ public class PlannerCallbacks : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent agent;
     public Robber trt;
 
-    public void Steal(GameObject treasure)
+    public IEnumerator Steal(GameObject treasure)
     {
-        treasure.GetComponent<Renderer>().enabled = false;
+        //treasure.GetComponent<Renderer>().enabled = false;
+        yield return null;
     }
 
     public IEnumerator Seek(GameObject treasure, GameObject copGO)
@@ -42,6 +43,15 @@ public class PlannerCallbacks : MonoBehaviour
             moves.Wander();
             yield return null;
             
+        }
+    }
+
+    public IEnumerator Hide(GameObject target)
+    {
+        while (Vector3.Distance(target.transform.position, transform.position) < 2f)
+        {
+            moves.Hide();
+            yield return null;
         }
     }
 }
