@@ -41,6 +41,7 @@ public class PlannerCallbacks : MonoBehaviour
         {
             moves.Wander();
             yield return null;
+            
         }
     }
 }

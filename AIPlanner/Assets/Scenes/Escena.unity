@@ -1173,7 +1173,7 @@ MonoBehaviour:
     MaximumDecisionTolerance: 3.4028235e+38
     MinimumPlanSize: 0
     MinimumPlanningTime: 0
-  m_WorldObjectQuery: {fileID: 0}
+  m_WorldObjectQuery: {fileID: 1867897478}
   m_ActionExecuteInfos:
   - m_ActionName: Wander
     m_PlanExecutorStateUpdateMode: 0
@@ -1274,6 +1274,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EnableTraitInspectors: 1
+--- !u!114 &1867897478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867897468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f222baf27330f49959caf266f2f6b851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Query:
+    m_QueryGroups:
+    - m_Filters: []
+      m_Quantifier: 0
+      m_QuantifierLimit: 1
+      m_QuantifierScorer:
+        id: 0
+      m_RequiredTraits:
+        m_Traits: []
+      m_ProhibitedTraits:
+        m_Traits: []
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!850595691 &1967335201
 LightingSettings:
   m_ObjectHideFlags: 0
