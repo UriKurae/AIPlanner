@@ -63,9 +63,9 @@ public class Moves : MonoBehaviour
     Vector3 wanderTarget = Vector3.zero;
     public void Wander()
     {
-        float wanderRadius = 10;
-        float wanderDistance = 10;
-        float wanderJitter = 1;
+        float wanderRadius = 10.0f;
+        float wanderDistance = 5.0f;
+        float wanderJitter = 1.0f;
 
         wanderTarget += new Vector3(Random.Range(-1.0f, 1.0f) * wanderJitter,
                                         0,
