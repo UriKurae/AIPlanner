@@ -44,8 +44,23 @@ MonoBehaviour:
       m_TraitPropertyId: -1
       m_Enum: {fileID: 0}
       m_Value: true
+  - m_Operator: ==
+    m_CustomOperatorType: 
+    m_OperandA:
+      m_Parameter: Robber
+      m_Trait: {fileID: 11400000, guid: d59369a7ba1a6f34fab2d3083a9b5749, type: 2}
+      m_TraitPropertyId: 2
+      m_Enum: {fileID: 0}
+      m_Value: 
+    m_OperandB:
+      m_Parameter: 
+      m_Trait: {fileID: 0}
+      m_TraitPropertyId: -1
+      m_Enum: {fileID: 0}
+      m_Value: false
   m_CreatedObjects: []
-  m_RemovedObjects: []
+  m_RemovedObjects:
+  - Treasure
   m_ObjectModifiers:
   - m_Operator: =
     m_CustomOperatorType: 

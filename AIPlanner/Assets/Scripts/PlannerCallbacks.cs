@@ -12,7 +12,7 @@ public class PlannerCallbacks : MonoBehaviour
 
     public IEnumerator Steal(GameObject treasure)
     {
-        //treasure.GetComponent<Renderer>().enabled = false;
+        treasure.GetComponent<Renderer>().enabled = false;
         yield return null;
     }
 
@@ -48,7 +48,7 @@ public class PlannerCallbacks : MonoBehaviour
 
     public IEnumerator Hide(GameObject target)
     {
-        while (Vector3.Distance(target.transform.position, transform.position) < 2f)
+        while (Vector3.Distance(target.transform.position, transform.position) > 1.0f)
         {
             moves.Hide();
             yield return null;
